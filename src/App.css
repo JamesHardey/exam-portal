@@ -1,38 +1,213 @@
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0 auto;
+  padding: 0;
+  /* display: flex;
+  justify-content: center; */
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  padding: 20px;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
+}
+
+button {
+  background-color: #007bff;
+  color: #f4f4f4;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 7px 15px;
+  font-size: 16px;
+  margin: 10px;
+  max-width: 200px;
+}
+
+button.delete {
+  background-color: red;
+  /* float: right; */
+}
+
+.head{
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+
+button.add {
+  background-color: green;
+}
+
+.question {
+  border: 1px solid black;
+  border-width: 2px 0 0;
+  margin-block: 5px;
+}
+
+.question h5 {
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+.question p {
+  font-size: 18px;
+  margin-block: 10px;
+}
+
+.question .options {
+  font-size: 14px;
+  padding: 5px;
+}
+
+.options.answer{
+  background-color: rgb(109, 242, 109);
+}
+
+.optionInput {
+  display: flex;
+}
+
+.optionInput div:nth-child(2) {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* height: 100%; */
 }
 
-.App-link {
-  color: #61dafb;
+/* .ExamContainer,
+.CourseContainer, 
+.SectionContainer,
+.Section, 
+.QuestionContainer{
+  padding: 20px;
+  border:1px solid black;
+  border-radius: 20px;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+} */
+
+.ExamContainer,
+.CourseContainer,
+.SectionContainer,
+.Section,
+.QuestionContainer {
+  /* padding: 20px; */
+  border: 1px solid black;
+  border-width: 1px 0 0 0;
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+textarea {
+  border: none;
+  padding: 10px;
+  font: 16px;
+  width: 100%;
+  margin: 10px 0;
 }
+
+
+
+
+
+
+
+
+
+/* 
+
+.App {
+  background-color: red;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 80%;
+} 
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.ExamContainer {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.ExamContainer button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+}
+
+.CourseContainer, .SectionContainer, .QuestionContainer {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+}
+
+.CourseContainer, .SectionContainer {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.CourseName, .SectionName, .QuestionText {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+button.Delete {
+  color: #ff0000;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  float: right; 
+}
+
+Add more styling as needed */
