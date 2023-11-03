@@ -67,23 +67,16 @@ function MainApp() {
         setExams(updatedExams);
     };
 
-    const addSection = (examIndex, courseIndex, title) => {
+    const addSection = (examIndex, courseIndex, title, instruction, passage) => {
         const newSection = {
             type: "Section",
             title: title,
-            passage: "",
-            instruction: "",
+            passage: passage,
+            instruction: instruction,
             questions: [],
         };
         const updatedExams = [...exams];
         updatedExams[examIndex].courses[courseIndex].sections.push(newSection);
-        setExams(updatedExams);
-    };
-
-    const updateSection = (passage, instruction) => {
-        const updatedExams = [...exams];
-        updatedExams[examIndex].courses[courseIndex].sections[sectionIndex].passage = passage;
-        updatedExams[examIndex].courses[courseIndex].sections[sectionIndex].instruction = instruction;
         setExams(updatedExams);
     };
 
@@ -112,55 +105,66 @@ function MainApp() {
         setSectionIndex(sectionIndex);
     };
 
+    const onShowExam = (examIndex) => {
+        handleMenuItemClick("Courses");
+        onExamClicked(examIndex)
+    }
+
+    const onShowCourse = (examIndex, courseIndex) => {
+        onCourseClicked(examIndex, courseIndex)
+        handleMenuItemClick("Sections");
+    }
+
+    const onShowSection = (examIndex, courseIndex, sectionIndex) => {
+        onSectionClicked(examIndex, courseIndex, sectionIndex)
+        handleMenuItemClick("Questions");
+    }
+
     
 
     const exportDataToTxt = () => {
         const formattedData = exams.map((exam) => {
-            const examText = '';
+            const examText = `Exam: ${exam.title}\n\n`;
 
             const courseText = exam.courses.map((course) => {
                 
-                const courseSectionText = course.sections.map((section) => {
+                const coursT = `guidelines:\ncourse:${exam.title}_${course.title}`
 
-                    const coursT = `guidelines:\ncourse:${exam.title}_${course.title}`
+                const courseSectionText = course.sections.map((section) => {
 
                     const sectionText = `\n\nsection:${section.title}\ninstruction:${section.instruction}\npassage:${section.passage}`;
 
                     const questionText = section.questions.map((question) => {
+
                         const questionContent = `\n\nQuestion:\nContent:${question.content}`;
 
                         const options = question.options.map((option) => {
 
-                            console.log(`Option----${option.text}`)
                             if(option.isCorrect){
                                 return `\nAnswer: ${option.text}`;
                             }
                             else return `\nOption: ${option.text}`;
                         });
 
-
                         return `${questionContent}${options.join('')}`;
                     });
 
-                    return `${coursT}${sectionText}${questionText.join('')}`;
+                    return `${sectionText}${questionText.join('')}`;
                 });
 
-                return courseSectionText.join('\n\n');
+                return `${coursT}${courseSectionText.join('')}`;
             });
 
-            return `${examText}${courseText}\n`;
+            return `${examText}${courseText.join('\n\n')}\n`;
         });
 
         const allDataText = formattedData.join('\n');
 
-        // Generate a unique filename for the exported text file
         const timestamp = new Date().getTime();
         const filename = `exam_data_${timestamp}.txt`;
 
-        // Create a Blob with the formatted data
         const blob = new Blob([allDataText], { type: "text/plain;charset=utf-8" });
 
-        // Use FileSaver to save the Blob as a text file
         saveAs(blob, filename);
     };
 
@@ -188,6 +192,7 @@ function MainApp() {
                             exams={exams}
                             addExam={addExam}
                             deleteExam={deleteExam}
+                            onShowExam={() => onShowExam(examIndex)}
                         />
                     )}
 
@@ -198,6 +203,7 @@ function MainApp() {
                             courses={exams[examIndex].courses}
                             addCourse={addCourse}
                             deleteCourse={()=>deleteCourse(examIndex, courseIndex)}
+                            onShowCourse={() => onShowCourse(examIndex, courseIndex)}
                         />
                     )}
 
@@ -209,6 +215,7 @@ function MainApp() {
                             sections={exams[examIndex].courses[courseIndex].sections}
                             addSection={addSection}
                             deleteSection={()=> {deleteSection(examIndex, courseIndex, sectionIndex)}}
+                            onShowSection={() => onShowSection(examIndex, courseIndex, sectionIndex)}
                         />
                     )}
 
@@ -217,7 +224,6 @@ function MainApp() {
                             examTitle={exams[examIndex].title}
                             courseTitle={exams[examIndex].courses[courseIndex].title}
                             section={exams[examIndex].courses[courseIndex].sections[sectionIndex]}
-                            updateSection={updateSection}
                             addQuestion={(newQuestion) => {
                                 addQuestion(examIndex, courseIndex, sectionIndex, newQuestion);
                             }}

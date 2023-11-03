@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExamEditor.css"; // Import your CSS file
 
-function ExamEditor({ exams, addExam, deleteExam }) {
+function ExamEditor({ exams, addExam, deleteExam, onShowExam }) {
   const [examTitle, setExamTitle] = useState("");
   const [showExamList, setShowExamList] = useState(false);
 
@@ -12,6 +12,10 @@ function ExamEditor({ exams, addExam, deleteExam }) {
       console.log(exams);
     }
   };
+
+  const handleShowExam = () => {
+    onShowExam();
+  }
 
   const handleDeleteExam = (examIndex) => {
     deleteExam(examIndex)
@@ -47,7 +51,7 @@ function ExamEditor({ exams, addExam, deleteExam }) {
               <div>
                 <p className="exam-title">{exam.title}</p>
               </div>
-              <button className="show-button">Show</button>
+              <button className="show-button" onClick={() => handleShowExam()}>Show</button>
               <button className="delete-button"onClick={()=>{handleDeleteExam(index)}} >Delete</button>
             </div>
           ))}

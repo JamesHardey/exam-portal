@@ -5,14 +5,11 @@ function QuestionEditor({
     examTitle,
     courseTitle,
     section,
-    updateSection,
     addQuestion,
     deleteQuestion
 }) {
     const [question, setQuestion] = useState("");
     const [showQuestionList, setShowQuestionList] = useState(false);
-    const [passageText, setPassageText] = useState(section.passage);
-    const [instructionText, setInstructionText] = useState(section.instruction);
     const [options, setOptions] = useState([
         { text: "", isCorrect: false },
         { text: "", isCorrect: false },
@@ -27,7 +24,6 @@ function QuestionEditor({
                 options: options,
             };
             addQuestion(questionObject);
-            updateSection(passageText, instructionText);
             setQuestion("");
             setOptions([
                 { text: "", isCorrect: false },
@@ -54,21 +50,12 @@ function QuestionEditor({
         setOptions(newOptions);
     };
 
-    const handleUpdateSectionPassage = (pass) => {
-        setPassageText(pass)
-        updateSection(passageText, instructionText);
-    };
-
-    const handleUpdateSectionInstruction = (instr) => {
-        setInstructionText(instr)
-        updateSection(passageText, instructionText);
-    };
 
     return (
         <div className="exam-editor-container">
             <p>Exam: {examTitle} Course: {courseTitle} Section: {section.title}</p>
             <div className="input-area">
-                <textarea
+                {/* <textarea
                     placeholder="Enter Instruction"
                     value={instructionText}
                     onChange={(e) => handleUpdateSectionInstruction(e.target.value)}
@@ -82,7 +69,7 @@ function QuestionEditor({
                     onChange={(e) => handleUpdateSectionPassage(e.target.value)}
                     rows={3}
                 >
-                </textarea>
+                </textarea> */}
 
                 <h3 style={{
                     marginTop: "10px",

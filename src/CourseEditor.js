@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExamEditor.css";
 
-function CourseEditor({ examId,header, courses, addCourse, deleteCourse }) {
+function CourseEditor({ examId,header, courses, addCourse, deleteCourse, onShowCourse }) {
     const [courseTitle, setCourseTitle] = useState("");
     const [showCourseList, setShowCourseList] = useState(false);
 
@@ -39,7 +39,7 @@ function CourseEditor({ examId,header, courses, addCourse, deleteCourse }) {
                             <div>
                                 <p className="exam-title">{course.title}</p>
                             </div>
-                            <button className="show-button">Show</button>
+                            <button className="show-button" onClick={onShowCourse}>Show</button>
                             <button className="delete-button">Delete</button>
                         </div>
                     ))}
