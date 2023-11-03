@@ -1,5 +1,4 @@
 import React from 'react';
-import DropDownItem from './DropDownItem';
 import ExamsDropdownItem from './DropDownItem';
 
 function SideNav({

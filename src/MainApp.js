@@ -13,8 +13,6 @@ function MainApp() {
     const [courseIndex, setCourseIndex] = useState(-1);
     const [sectionIndex, setSectionIndex] = useState(-1);
 
-    const [showExams, setShowExams] = useState(true);
-    const [newExamName, setNewExamName] = useState("");
     const [selectedMenuItem, setSelectedMenuItem] = useState("Exams");
 
     const handleMenuItemClick = (item) => {
